@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Final Capstone – Salary Predictor</title>
+</head>
+<body>
+    <h2>Salary Prediction App</h2>
+
+    <form action="/predict" method="post">
+        <label>Experience (years):</label><br>
+        <input type="number" name="experience" required><br><br>
+
+        <label>Projects:</label><br>
+        <input type="number" name="projects" required><br><br>
+
+        <label>Certifications:</label><br>
+        <input type="number" name="certifications" required><br><br>
+
+        <button type="submit">Predict Salary</button>
+    </form>
+
+    {% if prediction_text %}
+        <h3>{{ prediction_text }}</h3>
+    {% endif %}
+</body>
+</html>
