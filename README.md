@@ -1,5 +1,9 @@
 Project – Flask ML Application
-   The app predicts salary based on experience, projects, and certifications using a trained ML model.
+   This project is a Flask-based Machine Learning web application that predicts salary based on:
+    > Years of experience
+    > Number of projects
+    > Number of certifications
+    A trained ML model is integrated into a Flask backend and exposed through a REST API and web interface, demonstrating end-to-end ML deployment readiness.
 
 Objectives
     Train and load an ML model
@@ -20,6 +24,7 @@ Tech Stack
     ML Library: Scikit-learn
     Data Handling: Pandas, NumPy
     Version Control: Git & GitHub
+    Deployment: Render
 
 Project Structure
     
@@ -34,9 +39,7 @@ Project Structure
     │   └── dataset.csv
     │
     ├── templates/
-    │   └── index.html
-    │
-    └── static/
+        └── index.html
 
 How to Run the Project (Step-by-Step)
 1. Clone the Repository
@@ -75,15 +78,12 @@ Prediction API Usage
 
 [Note: /predict only supports POST requests.]
 
-Machine Learning Details
-    Model Type: Logistic / Regression Model
-    Features Used: Experience, Projects, Certifications
-    Target Variable: Salary
-    Dataset: Custom CSV (small demo dataset)
-
 Challenges Faced
     Missing model.pkl file
     GitHub merge conflicts
     HTTP method issues (GET vs POST)
 
 (All issues were resolved during development.)
+
+#Live Link
+    https://final-capstone-flask.onrender.com
