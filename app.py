@@ -1,3 +1,51 @@
+from flask import Flask, render_template, request, jsonify
+import pickle
+import os
+
+app = Flask(__name__)
+
+MODEL_PATH = "ml/model.pkl"
+
+# Load model safely
+if not os.path.exists(MODEL_PATH):
+    raise RuntimeError("❌ model.pkl is missing. Run train_model.py first.")
+
+with open(MODEL_PATH, "rb") as f:
+    model = pickle.load(f)
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+@app.route("/predict", methods=["POST"])
+def predict():
+    try:
+        experience = int(request.form["experience"])
+        projects = int(request.form["projects"])
+        certifications = int(request.form["certifications"])
+
+        prediction = model.predict([[experience, projects, certifications]])
+
+        return render_template(
+            "index.html",
+            prediction_text=f"Predicted Salary: ₹{int(prediction[0])}"
+        )
+
+    except Exception as e:
+        return render_template(
+            "index.html",
+            prediction_text=f"Error: {str(e)}"
+        )
+
+# if __name__ == "__main__":
+#     app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+
+
+#---------------------------------------------------------------------------------------
+'''
 from flask import Flask, request, jsonify
 import pickle
 import os
@@ -44,3 +92,4 @@ def predict():
 
 if __name__ == "__main__":
     app.run(debug=True)
+'''
